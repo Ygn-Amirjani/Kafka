@@ -3,10 +3,8 @@
     "port": "9092",
 
     "topics": {
-
         "first_topic": "input",
         "second_topic": "output"
-
     }
     
 }
