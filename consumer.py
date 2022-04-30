@@ -1,34 +1,27 @@
 from kafka import KafkaConsumer
 from kafka import KafkaProducer
-from queue import Queue
-
-import datetime, time, json
+import datetime, json
 
 # Load config file
 with open('config.json', mode='r') as config_file:
     CONFIG = json.load(config_file)
 
-Apache_kafka = f"{CONFIG.get('host')}:{CONFIG.get('port')}"
-data = Queue()
+def send_message_to_output_topic():
+    """ reads from 'input' topic, transforms input message to date string 
+        (must be in RFC 3339) and sends to topic 'output'"""
 
-def read_from_input_topic():
+    # It just needs to have at least one broker that will respond to a Metadata API Request. 
+    Apache_kafka = f"{CONFIG.get('host')}:{CONFIG.get('port')}"
     consumer = KafkaConsumer(CONFIG.get('topics', {}).get('first_topic'),bootstrap_servers=Apache_kafka)
+    producer = KafkaProducer(bootstrap_servers=Apache_kafka)
+
     for msg in consumer:
         rfc3339 = datetime.datetime.fromtimestamp(int(msg.value.decode())/1000).isoformat()
-        data.put(rfc3339)
+        # Publish a message to a topic.
+        producer.send(CONFIG.get('topics', {}).get('second_topic'), json.dumps(rfc3339).encode('utf-8'))
+        # block until all asynchronous messages are sent
+        producer.flush()
         print (msg)
 
-# def send_message_to_output_topic():
-#     producer = KafkaProducer(bootstrap_servers=Apache_kafka)
-#     while True:
-#         producer.send(CONFIG.get('topics', {}).get('second_topic'), json.dumps(data.get()).encode('utf-8'))
-#         producer.flush()
-#         time.sleep(5)
-
 if __name__ == "__main__":
-    read_from_input_topic()
-    # send_message_to_output_topic()
-
-
-
-
+    send_message_to_output_topic()

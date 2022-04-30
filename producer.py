@@ -6,7 +6,7 @@ with open('config.json', mode='r') as config_file:
     CONFIG = json.load(config_file)
 
 def send_message_to_input_topic():
-    """ continuously write messages to 'input' topic with epoch timestamp in ms """
+    """ continuously write messages to 'input' topic with epoch timestamp in ms. """
 
     # It just needs to have at least one broker that will respond to a Metadata API Request. 
     Apache_kafka = f"{CONFIG.get('host')}:{CONFIG.get('port')}"
@@ -19,7 +19,7 @@ def send_message_to_input_topic():
         # block until all asynchronous messages are sent
         producer.flush()
         # We send a message every 5 seconds .
-        time.sleep(5)
+        time.sleep(60)
 
 if __name__ == "__main__":
     send_message_to_input_topic()
