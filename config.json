@@ -1,4 +1,8 @@
 {
     "host": "94.101.184.177",
-    "port": "9092"
+    "port": "9092",
+    "topics": {
+        "first_topic": "input",
+        "second_topic": "output"
+    }
 }
