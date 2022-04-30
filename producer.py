@@ -15,7 +15,7 @@ def send_message_to_input_topic():
     while True: 
         current_time = int(time.time() * 1000)
         # Publish a message to a topic.
-        msg = producer.send('input', json.dumps(current_time).encode('utf-8'))
+        producer.send(CONFIG.get('topics', {}).get('first_topic'), json.dumps(current_time).encode('utf-8'))
         # block until all asynchronous messages are sent
         producer.flush()
         # We send a message every 5 seconds .
