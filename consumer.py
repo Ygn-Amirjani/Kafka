@@ -28,7 +28,3 @@ def read_from_input_topic():
 if __name__ == "__main__":
     read_from_input_topic()
     # send_message_to_output_topic()
-
-
-
-
