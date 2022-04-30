@@ -23,3 +23,7 @@ def send_message_to_input_topic():
 
 if __name__ == "__main__":
     send_message_to_input_topic()
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 9a5387f7b2d5742c67204599e063ee8244adfa56

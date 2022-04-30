@@ -24,4 +24,9 @@ def send_message_to_output_topic():
         print (msg)
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     send_message_to_output_topic()
+=======
+    read_from_input_topic()
+    # send_message_to_output_topic()
+>>>>>>> 9a5387f7b2d5742c67204599e063ee8244adfa56
