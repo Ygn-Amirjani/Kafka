@@ -19,7 +19,7 @@ def send_message_to_input_topic():
         # block until all asynchronous messages are sent
         producer.flush()
         # We send a message every 5 seconds .
-        time.sleep(60)
+        time.sleep(3600)
 
 if __name__ == "__main__":
     send_message_to_input_topic()
