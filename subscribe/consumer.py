@@ -3,7 +3,7 @@ from kafka import KafkaProducer
 import datetime, json
 
 # Load config file
-with open('config.json', mode='r') as config_file:
+with open('../config.json', mode='r') as config_file:
     CONFIG = json.load(config_file)
 
 def send_message_to_output_topic():

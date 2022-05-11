@@ -2,7 +2,7 @@ from kafka import KafkaProducer
 import time, json
 
 # Load config file
-with open('config.json', mode='r') as config_file:
+with open('../config.json', mode='r') as config_file:
     CONFIG = json.load(config_file)
 
 def send_message_to_input_topic():
