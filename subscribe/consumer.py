@@ -7,8 +7,8 @@ def send_message_to_output_topic():
         (must be in RFC 3339) and sends to topic 'output'"""
 
     # It just needs to have at least one broker that will respond to a Metadata API Request. 
-    consumer = KafkaConsumer('input',bootstrap_servers='kafka-exporter.apache-kafka.svc.cluster.local:9092')
-    producer = KafkaProducer(bootstrap_servers='kafka-exporter.apache-kafka.svc.cluster.local:9092')
+    consumer = KafkaConsumer('input',bootstrap_servers='kafka-service.apache-kafka.svc.cluster.local:9092')
+    producer = KafkaProducer(bootstrap_servers='kafka-service.apache-kafka.svc.cluster.local:9092')
 
     for msg in consumer:
         rfc3339 = datetime.datetime.fromtimestamp(int(msg.value.decode())/1000).isoformat()
